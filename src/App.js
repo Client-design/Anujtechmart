@@ -12,7 +12,8 @@ import Profile from './Components/Profile';
 import Category from './Components/Category';
 
 // --- Page Imports ---
-import Home from './Pages/Home';
+// FIX 1: Correct the path to match the uploaded location
+import Home from './Components/Pages/Home'; 
 
 // Ensure react-router-dom is installed: npm install react-router-dom
 
