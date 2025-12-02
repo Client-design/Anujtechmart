@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { 
     auth, 
     onAuthStateChanged 
-} from './firebase'; // Import auth and the state listener from your firebase file
+} from './firebase'; 
 
 // --- Initial Data ---
 const initialProducts = [
@@ -47,7 +47,6 @@ const initialProducts = [
         image: '/images/stock-watch.jpg', 
         rating: 4.2 
     },
-    // Add more products here manually if needed
 ];
 
 // 1. Create the Context object
@@ -58,25 +57,19 @@ export const useAppContext = () => useContext(AppContext);
 
 // 3. The Provider Component
 export const AppProvider = ({ children }) => {
-    // State for user authentication status
     const [user, setUser] = useState(null);
-    
-    // State for the shopping cart (array of {product, quantity})
+    const [loading, setLoading] = useState(true); // FIX: Loading state for stability
     const [cart, setCart] = useState([]);
-    
-    // Static state for products and categories
     const [products] = useState(initialProducts); 
     const categories = ['Trending', 'Mobile Accessories'];
 
     // --- Firebase Authentication Listener ---
     useEffect(() => {
-        // Subscribes to Firebase auth state changes. This is minimal and efficient.
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log("Firebase Auth State Changed:", currentUser ? currentUser.email : "Logged out");
             setUser(currentUser);
+            setLoading(false); // FIX: Set loading to false after initial check
         });
-        
-        // Cleanup function to unsubscribe when the component unmounts
         return unsubscribe; 
     }, []);
 
@@ -85,28 +78,25 @@ export const AppProvider = ({ children }) => {
         setCart(prevCart => {
             const exists = prevCart.find(item => item.id === product.id);
             if (exists) {
-                // If product exists, increment quantity
                 return prevCart.map(item => 
                     item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
                 );
             }
-            // If product is new, add it with quantity 1
             return [...prevCart, { ...product, quantity: 1 }];
         });
     };
 
     const removeFromCart = (productId) => {
-        // Filter out the item to be removed
         setCart(prevCart => prevCart.filter(item => item.id !== productId));
     };
     
-    // Calculate total price for the checkout
     const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     // --- Context Value ---
     const value = {
         // State
         user,
+        loading, // Exported loading state
         cart,
         products,
         categories,
