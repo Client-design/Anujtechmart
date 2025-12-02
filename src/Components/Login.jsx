@@ -1,16 +1,16 @@
 // src/Components/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../Context'; // Optional: Use context to show loading/error
+import { useAppContext } from '../Context'; 
 import { 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword 
-} from '../firebase'; // Import Firebase Auth functions
+} from '../firebase'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLogin, setIsLogin] = useState(true); // Toggles between Login and Sign Up
+    const [isLogin, setIsLogin] = useState(true); 
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -31,12 +31,9 @@ const Login = () => {
                 console.log("User successfully created and signed in.");
             }
             
-            // Redirect to the home page or a protected route after success
             navigate('/'); 
 
         } catch (err) {
-            // Handle Firebase Auth errors (e.g., 'auth/user-not-found', 'auth/wrong-password')
-            // Clean up the error message for better user display
             const errorMessage = err.message.replace('Firebase: Error (auth/', '').replace(').', '').replace(/-/g, ' ');
             setError(errorMessage);
         } finally {
@@ -46,7 +43,7 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            <h2>{isLogin ? 'Sign In' : 'Create Account'}</h2>
+            <h2>{isLogin ? 'Sign In to Anuj Tech Mart' : 'Create Anuj Tech Mart Account'}</h2>
             
             <form onSubmit={handleSubmit}>
                 <input 
@@ -74,7 +71,7 @@ const Login = () => {
             <button 
                 onClick={() => {
                     setIsLogin(!isLogin);
-                    setError(''); // Clear error when toggling mode
+                    setError(''); 
                 }} 
                 className="toggle-button"
             >
