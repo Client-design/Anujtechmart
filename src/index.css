@@ -1,6 +1,11 @@
 /* src/index.css */
 
-/* Global Reset and Body Styling */
+/* Global Reset, Stability, and Animation */
+* {
+    transition: all 0.3s ease-out; /* Added for smooth animation */
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -32,7 +37,7 @@ body {
 }
 
 .logo-img {
-    width: 40px; /* Size for your atm.jpg logo */
+    width: 40px; 
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
@@ -52,13 +57,16 @@ h1 {
     font-weight: 500;
 }
 
+.user-actions {
+    display: flex;
+    align-items: center;
+}
 .user-actions a {
     color: white;
     text-decoration: none;
     margin-left: 20px;
     padding: 8px 12px;
     border-radius: 4px;
-    transition: background-color 0.2s;
 }
 
 .user-actions a:hover {
@@ -67,7 +75,8 @@ h1 {
 
 /* --- Product Grid Styling --- */
 .product-list-grid,
-.category-page-container {
+.category-page-container,
+.home-container {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -86,6 +95,12 @@ h1 {
     padding: 15px;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* Added hover effect for better UI */
+    transform: scale(1);
+}
+.product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
 }
 
 .product-image {
@@ -105,7 +120,6 @@ h1 {
     margin-top: 10px;
     width: 100%;
     font-size: 1em;
-    transition: background-color 0.2s;
 }
 
 .add-to-cart-btn:hover {
@@ -125,6 +139,8 @@ h1 {
 }
 
 .login-container input,
+.profile-container button,
+.login-container button,
 .checkout-container button {
     width: 100%;
     padding: 10px;
@@ -136,6 +152,7 @@ h1 {
 
 .payment-button {
     background-color: #4CAF50; /* Green for payment */
+    font-weight: bold;
 }
 .payment-button:hover {
     background-color: #45a049;
@@ -143,15 +160,91 @@ h1 {
 
 /* --- Checkout Cart Styling --- */
 .cart-item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr 80px;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
 }
-.cart-item button {
+.cart-item .remove-btn {
     width: auto;
     padding: 5px 10px;
     background-color: #f44336;
     color: white;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+.cart-summary {
+    padding: 10px 0;
+}
+.summary-line, .total-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+.total-line {
+    border-top: 2px solid #333;
+    padding-top: 10px;
+    font-size: 1.2em;
+}
+
+/* --- Profile Styling --- */
+.order-status-badge {
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+}
+.status-delivered .order-status-badge { background-color: #4CAF50; }
+.status-shipped .order-status-badge { background-color: #ff9800; }
+.status-cancelled .order-status-badge { background-color: #f44336; }
+
+.signout-button {
+    background-color: #f44336;
+    color: white;
+    margin-top: 20px;
+}
+
+/* --- Responsive Layout Adjustments (Mobile UI) --- */
+@media (max-width: 768px) {
+    /* Header: Stack logo/nav/actions vertically */
+    .header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .category-nav {
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+
+    .category-nav .nav-link {
+        padding: 5px 10px;
+        margin: 5px;
+        font-size: 0.9em;
+    }
+
+    .user-actions {
+        width: 100%;
+        justify-content: space-around;
+        display: flex;
+    }
+    
+    /* Product Grid: Single column on small screens */
+    .product-list-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    /* Centers containers */
+    .login-container,
+    .profile-container,
+    .checkout-container {
+        margin: 20px auto;
+        width: 95%;
+        padding: 20px;
+    }
 }
