@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../Context';
-import { auth } from '../firebase'; // Import auth only if needed, but Context handles status
+// auth import is not strictly needed here since Context handles user state, but keeping minimal changes
+// import { auth } from '../firebase'; 
 
 const Header = () => {
   // Use the custom hook to access global state
@@ -19,9 +20,9 @@ const Header = () => {
       {/* --- 1. Logo and Site Title --- */}
       <div className="logo-section">
         <Link to="/" className="logo-link">
-          {/* Logo ATM.jpg from the public folder */}
+          {/* Logo ATM.png from the public/images folder */}
           <img 
-            src="/images/atm.jpg" 
+            src="/images/atm.png" // FIX: Corrected path to .png
             alt="ATM Mini-Mart Logo" 
             className="logo-img" 
           /> 
