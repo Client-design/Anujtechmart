@@ -2,7 +2,7 @@
 import React from 'react';
 import { useAppContext } from '../Context';
 import { useNavigate } from 'react-router-dom';
-import { signOut } from '../firebase'; // Import the signOut function
+import { auth, signOut } from '../firebase'; // FIX: Import auth to use with signOut()
 
 const Profile = () => {
   // Get the current user object from the global state
@@ -11,7 +11,7 @@ const Profile = () => {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth); // Use the Firebase signOut function
+      await signOut(auth); // Use the Firebase signOut function with the imported auth object
       navigate('/'); // Redirect to the home page after signing out
       console.log("User signed out successfully.");
     } catch (error) {
