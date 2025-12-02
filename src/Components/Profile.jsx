@@ -33,7 +33,7 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <h2>My Account</h2>
+      <h2>My Anuj Tech Mart Account</h2>
 
       <div className="user-info">
         <h3>👤 Profile Details</h3>
