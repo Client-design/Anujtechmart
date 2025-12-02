@@ -1,9 +1,7 @@
 // src/Components/Pages/Home.jsx
 import React from 'react';
-// FIX 2a: Needs to go up two directories (../..), from Pages up to Components, then up to src
-import { useAppContext } from '../../Context'; 
-// FIX 2b: ProductCard is in the Components/ folder, so go up one level and select it
-import ProductCard from '../ProductCard'; 
+import { useAppContext } from '../../Context'; // FIX: Corrected relative path
+import ProductCard from '../ProductCard'; // FIX: Corrected relative path
 
 const Home = () => {
   // Access the complete list of products from the global state
@@ -25,8 +23,6 @@ const Home = () => {
           ))}
         </div>
       )}
-      
-      {/* Optional: You can add more sections here (e.g., 'Latest Arrivals', 'Offers') */}
       
     </div>
   );
