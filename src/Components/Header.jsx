@@ -2,8 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../Context';
-// auth import is not strictly needed here since Context handles user state, but keeping minimal changes
-// import { auth } from '../firebase'; 
+// import { auth } from '../firebase'; // Not needed here
 
 const Header = () => {
   // Use the custom hook to access global state
@@ -20,19 +19,18 @@ const Header = () => {
       {/* --- 1. Logo and Site Title --- */}
       <div className="logo-section">
         <Link to="/" className="logo-link">
-          {/* Logo ATM.png from the public/images folder */}
+          {/* Logo ATM.png from the public folder */}
           <img 
             src="/images/atm.png" // FIX: Corrected path to .png
-            alt="ATM Mini-Mart Logo" 
+            alt="Anuj Tech Mart Logo" // Rebranded alt text
             className="logo-img" 
           /> 
-          <h1>Mini-Mart</h1>
+          <h1>Anuj Tech Mart</h1> {/* Rebranded Title */}
         </Link>
       </div>
 
       {/* --- 2. Category Navigation --- */}
       <nav className="category-nav">
-        {/* Link to all products on the home page */}
         <Link to="/" className="nav-link">Home</Link>
         
         {/* Dynamically generate links for the categories defined in Context.js */}
