@@ -1,5 +1,6 @@
 // src/Components/Checkout.jsx
 import React from 'react';
+import { Link } from 'react-router-dom'; // FIX 3: Added missing Link import
 import { useAppContext } from '../Context';
 
 // IMPORTANT: Replace this placeholder with your actual payment button link
@@ -7,13 +8,9 @@ const PAYMENT_LINK = "https://your-payment-gateway-link.com/paynow";
 
 const Checkout = () => {
   // Access cart data, total, and modification functions
-  const { cart, cartTotal, removeFromCart } = useAppContext();
-
-  return (
-    <div className="checkout-container">
-      <h2>🛒 Review Your Order</h2>
-
+// ... (rest of the file remains the same)
       {cart.length === 0 ? (
+        // Link is now available
         <p>Your cart is empty. <Link to="/">Start shopping here!</Link></p>
       ) : (
         <>
