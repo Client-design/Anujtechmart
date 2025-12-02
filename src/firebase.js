@@ -28,7 +28,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // 3. Export the auth instance and all required functions
-// This makes them easily accessible in other components like Login.jsx and Context.js
 export { 
     auth, 
     signOut, 
@@ -36,6 +35,3 @@ export {
     signInWithEmailAndPassword,
     onAuthStateChanged
 };
-
-// Note: The getAnalytics function and its result are commented out/removed
-// to keep the code minimal, as requested.
